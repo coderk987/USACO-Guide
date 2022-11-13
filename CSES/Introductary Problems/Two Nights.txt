@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+typedef unsigned long long int uli;
+int main() {
+    //problem:https://cses.fi/problemset/task/1072/
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  uli k;
+  cin>>k;
+  for(uli i=1;i<=k;i++){
+      cout<<((i*i*(i*i-1))/2)-(4*(i-1)*(i-2))<<"\n";
+  }
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int firstOc(int a[],int x,int n){
+    for(int i=0;i<n;i++){
+        if(a[i]==x) return i;
+    }
+    return -1;
+}
+
+int main() {
+    freopen("outofplace.in","r",stdin);
+    freopen("outofplace.out","w",stdout);
+    int n;
+    cin>>n;
+    int a[n],s[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+        s[i]=a[i];
+    }
+    sort(s,s+n);
+    int tot=-1;
+    for(int i=0;i<n;i++){
+        if(a[i]!=s[i]) tot++;
+    }
+    cout<<tot;
+}

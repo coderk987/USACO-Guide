@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  freopen("blocks.in","r",stdin);
+  freopen("blocks.out","w",stdout);
+  vector<int> block(26,0);
+  int n;
+  cin>>n;
+  string letters="abcdefghijklmnopqrstuvwxyz";
+  for(int i=0;i<n;i++){
+      string front,back;
+      cin>>front>>back;
+      for(int i=0;i<26;i++){
+          int a=count(front.begin(),front.end(),letters[i]);
+          int b=count(back.begin(),back.end(),letters[i]);
+          if(a==0 || b==0){
+              block[i]+=abs(a-b);
+          }else if(a==b){
+              block[i]+=a; 
+          }else{
+              block[i]+=max(a,b);
+          }
+      }
+  }
+  for(int i=0;i<26;i++){
+        cout<<block[i]<<endl;
+    }
+}

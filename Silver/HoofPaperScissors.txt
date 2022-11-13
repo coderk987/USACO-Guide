@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  freopen("hps.in","r",stdin);
+  freopen("hps.out","w",stdout);
+  int n;
+  cin>>n;
+  vector<int> h(n+1,0),p(n+1,0),s(n+1,0);
+  for(int i=1;i<=n;i++){
+      h[i]=h[i-1];
+      p[i]=p[i-1];
+      s[i]=s[i-1];
+
+      char c;
+      cin>>c;
+      if(c=='H') h[i]++;
+      else if(c=='P') p[i]++;
+      else s[i]++;
+  }
+  int best=0;
+  for(int i=1;i<=n;i++){
+      int h1=h[i-1];
+      int p1=p[i-1];
+      int s1=s[i-1];
+
+      int h2=h[n]-h[i-1];
+      int p2=p[n]-p[i-1];
+      int s2=s[n]-s[i-1];
+
+      int b1=max(h1,max(p1,s1));
+      int b2=max(h2,max(p2,s2));
+
+      best=max(best,b1+b2);
+  }
+  cout<<best;
+}

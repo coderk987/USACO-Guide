@@ -1,0 +1,25 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+bool many(string s, int size){
+    set<string> subs;
+    for(int i=0;i<=s.length()-size;i++){
+        if(subs.count(s.substr(i,size))>0) return true;
+        subs.insert(s.substr(i,size));
+    }
+    return false;
+}
+
+int main() {
+    freopen("whereami.in","r",stdin);
+    freopen("whereami.out","w",stdout);
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int best=1;
+    while(many(s,best)) best++;
+    cout<<best;
+}

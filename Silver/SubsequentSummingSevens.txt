@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long int ll;
+#define INF_INT 2e9
+#define INF_LL 2e18
+#define mod 1000000007
+#define pb push_back
+#define vi vector<int>
+#define vl vector<ll>
+#define fastio ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(x) x.begin(), x.end()
+#define ins insert
+#define lb lower_bound
+#define ub upper_bound
+#define umap unordered_map
+#define uset unordered_set
+ 
+#define sz(q) (int)(q.size())
+#define fo(a,b) for(auto i=a;i<b;++i)
+#define rfo(a,b) for(auto i=a;i>=b;--i)
+#define fo2(a,b) for(auto j=a;j<b;++j)
+#define rfo2(a,b) for(auto j=a;j>=b;--j)
+#define tt ll t; cin>>t; while(t--)
+ 
+#define maxel(a) *max_element(all(a))
+#define minel(a) *min_element(all(a))
+#define sort(a) sort(all(a))
+// #define find(a,i) find(all(a),i)!=a.end()
+ 
+int main() {
+    freopen("div7.in","r",stdin);
+    freopen("div7.out","w",stdout);
+    fastio
+    int n;
+    cin>>n;
+    vl v(n,0);
+    fo(0,n) cin>>v[i];
+    vi p(7,-1);
+    int cur=0,best=0;
+    fo(0,n){
+        cur+=v[i];
+        cur%=7;
+        if(cur==0) best=max(best,i+1);
+        if(p[cur]==-1) p[cur]=i;
+        else{
+            best=max(best,(i-p[cur]));
+        }
+    }
+    cout<<best;
+}

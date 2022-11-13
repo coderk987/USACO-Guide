@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long int ll;
+#define INF_INT 2e9
+#define INF_LL 2e18
+#define mod 1000000007
+#define pb push_back
+#define vi vector<int>
+#define vi2d vector<vector<int>>
+#define vl vector<ll>
+#define fastio ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(x) x.begin(), x.end()
+#define ins insert
+#define lb(x,y) (lower_bound(all(x),y)-x.begin())
+#define ub upper_bound
+#define umap unordered_map
+#define uset unordered_set
+ 
+#define sz(q) (int)(q.size())
+#define fo(a,b) for(auto i=a;i<b;++i)
+#define rfo(a,b) for(auto i=a;i>=b;--i)
+#define fo2(a,b) for(auto j=a;j<b;++j)
+#define rfo2(a,b) for(auto j=a;j>=b;--j)
+#define tt ll t; cin>>t; while(t--)
+ 
+#define maxel(a) *max_element(all(a))
+#define minel(a) *min_element(all(a))
+#define find(a,b) a.find(b) != a.end()
+
+bool valid(vector<string> &spot,vector<string> &plain,int i,int j,int k){
+    uset<string> s;
+    for(int a=0;a<spot.size();a++){
+        string cur="";
+        cur.pb(spot[a][i]);
+        cur.pb(spot[a][j]);
+        cur.pb(spot[a][k]);
+        s.ins(cur);
+    }
+    for(int a=0;a<spot.size();a++){
+        string cur="";
+        cur.pb(plain[a][i]);
+        cur.pb(plain[a][j]);
+        cur.pb(plain[a][k]);
+        //cout<<cur<<endl;
+        if(find(s,cur)) return false;
+    }
+    return true;
+}
+
+int main() {
+    freopen("cownomics.in","r",stdin);
+    freopen("cownomics.out","w",stdout);
+    int n,m;
+    cin>>n>>m;
+    vector<string> spot(n," ");
+    vector<string> plain(n," ");
+    fo(0,n) cin>>spot[i];
+    fo(0,n) cin>>plain[i];
+    int ctr=0;
+    for(int i=0;i<m;i++){
+        for(int j=i+1;j<m;j++){
+            for(int k=j+1;k<m;k++){
+                if(valid(spot,plain,i,j,k)) ctr++;
+            }
+        }
+    }
+    cout<<ctr;
+}

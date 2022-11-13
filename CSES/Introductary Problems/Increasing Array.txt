@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+typedef unsigned long int uli;
+int main() {
+  //Problem: https://cses.fi/problemset/task/1094
+  uli n;
+  cin>>n;
+  vector<uli> nums;
+  for(uli i=0;i<n;i++){
+      uli x;
+      cin>>x;
+      nums.push_back(x);
+  }
+  uli s=0;
+  for(uli i=1;i<n;i++){
+        if(nums[i]<nums[i-1]){ 
+            s=s+(nums[i-1]-nums[i]);
+            nums[i]=nums[i]+(nums[i-1]-nums[i]);
+        }
+  }
+  cout<<s;
+}

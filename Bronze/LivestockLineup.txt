@@ -1,0 +1,45 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+struct cmd{string a;string b;};
+
+int ind(vector<string> v,string s){
+    for(int i=0;i<8;i++) if(v[i]==s) return i;
+    return false;
+}
+
+bool val(vector<string> v,vector<cmd> ord){
+    for(int i=0;i<ord.size();i++){
+        if(abs(ind(v,ord[i].a)-ind(v,ord[i].b))!=1) return false;
+    }
+    return true;
+}
+
+int main() {
+  freopen("lineup.in","r",stdin);
+  freopen("lineup.out","w",stdout);
+  vector<string> v{"Beatrice","Belinda","Bella","Bessie","Betsy","Blue","Buttercup","Sue"};
+  int n;
+  cin>>n;
+  vector<cmd> ord;
+  for(int i=0;i<n;i++){
+      cmd c;
+      for(int i=0;i<6;i++){
+          string s;
+          cin>>s;
+          if(i==0) c.a=s;
+          if(i==5) c.b=s;
+      }
+      ord.push_back(c);
+  }
+  do{
+      if(val(v,ord)){
+          for(int i=0;i<8;i++) cout<<v[i]<<endl;
+          break;
+      }
+  }
+  while(next_permutation(v.begin(),v.end()));
+}

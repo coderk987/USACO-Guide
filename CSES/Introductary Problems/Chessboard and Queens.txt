@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int tot=0;
+
+bool isSafe(vector<string> &grid,int row,int col,int n){
+    for(int i=row-1;i>=0;i--){
+        if(grid[i][col]=='q') return false;
+    }
+    for(int i=row-1,j=col-1;i>=0 and j>=0;i--,j--){
+        if(grid[i][j]=='q') return false;
+    }
+    for(int i=row-1,j=col+1;i>=0 && j<n;i--,j++){
+        if(grid[i][j]=='q') return false;
+    }
+    return true;
+}
+
+void countQueen(vector<string> &grid,int row,int n){
+    if(row==n){
+        tot++;
+        return;
+    }
+    for(int i=0;i<n;i++){
+        if(grid[row][i]=='*') continue;
+        if(isSafe(grid,row,i,n)){
+            grid[row][i]='q';
+            countQueen(grid,row+1,n);
+            grid[row][i]='.';
+        }
+    }
+}
+
+int main() {
+    vector<string> board(8,"");
+    for(int i=0;i<8;i++){
+        cin>>board[i];
+    }
+    countQueen(board,0,8);
+    cout<<tot;
+}

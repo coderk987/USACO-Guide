@@ -1,0 +1,70 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+    freopen("tttt.in","r",stdin);
+    freopen("tttt.out","w",stdout);
+    string s[3];
+    cin>>s[0]>>s[1]>>s[2];
+    set<set<char>> grid;
+    set<char> win;
+    set<string> teams;
+    for(int i=0;i<3;i++){
+        set<char> cur;
+        for(int j=0;j<3;j++){
+            cur.insert(s[i][j]);
+        }
+        if(cur.size()==1){
+            for(auto x:cur){
+                win.insert(x);
+                break;
+            }
+        }
+        if(cur.size()==2){
+            string t="";
+            for(auto x:cur) t+=(x);
+            teams.insert(t);
+        }
+    }
+    for(int i=0;i<3;i++){
+        set<char> cur;
+        for(int j=0;j<3;j++){
+            cur.insert(s[j][i]);
+        }
+        if(cur.size()==1){
+            for(auto x:cur) win.insert(x); 
+        }
+        if(cur.size()==2) {
+            string t="";
+            for(auto x:cur) t+=(x);
+            teams.insert(t);
+        }
+    }
+    set<char> diag1{s[0][0],s[1][1],s[2][2]};
+    set<char> diag2{s[0][2],s[1][1],s[2][0]};
+    if(diag1.size()==1){
+        for(auto x:diag1){
+                win.insert(x);
+                break;
+        }
+    }
+    else if(diag1.size()==2){
+        string t="";
+        for(auto x:diag1) t+=(x);
+        teams.insert(t);
+    };
+    if(diag2.size()==1){
+        for(auto x:diag2){
+            win.insert(x);
+            break;
+        }
+    }
+    else if(diag2.size()==2){
+        string t="";
+        for(auto x:diag2) t+=(x);
+        teams.insert(t);
+    }
+    cout<<win.size()<<endl<<teams.size();
+}

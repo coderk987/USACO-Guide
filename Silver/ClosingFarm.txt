@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int want=0;
+int cur=0;
+vector<bool> close(3001,false);
+
+void dfs(vector<vector<int>> &graph,int v,vector<bool> &vis){
+	if(close[v] || vis[v]) return;
+	vis[v]=true;
+	cur++;
+	for(auto a:graph[v]){
+		dfs(graph,a,vis);
+	}
+}
+
+int main() {
+	freopen("closing.in","r",stdin);
+    freopen("closing.out","w",stdout);
+	int n,m;
+	cin>>n>>m;
+	vector<vector<int>> graph(n+1);
+	for(int i=0;i<m;i++){
+		int x,y;
+		cin>>x>>y;
+		graph[x].push_back(y);
+		graph[y].push_back(x);
+	}
+	want=n;
+	vector<bool> vis(n+1,0);
+	dfs(graph,1,vis);
+	if(cur==want){
+		cout<<"YES\n";
+	}else{
+		cout<<"NO\n";
+	}
+	for(int i=1;i<n;i++){
+		int x;
+		cin>>x;
+		close[x]=true;
+		want--;
+		vector<bool> vis(n+1,0);
+		int strt=-1;
+		for(int i=1;i<=n;i++){
+			if(!close[i]){
+				strt=i;
+				break;
+			}
+		}
+		dfs(graph,strt,vis);
+		if(cur==want){
+			cout<<"YES\n";
+		}else{
+			cout<<"NO\n";
+		}
+		cur=0;
+	}
+}

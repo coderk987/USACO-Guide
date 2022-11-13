@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  freopen("lostcow.in","r",stdin);
+  freopen("lostcow.out","w",stdout);
+  int x,y;
+  cin>>x>>y;
+  int pos=x,prevPos=x,dist=0;
+  for(int i=0,j=1;pos!=y;i++,j*=2){
+      if(i%2==0){
+          if(x+j>y && y>x) pos=y;
+          else pos=x+j;
+          dist=dist+max(pos,prevPos)-min(pos,prevPos);
+          prevPos=pos;
+      }else{
+        if(x-j<y && y<x) pos=y;
+        else pos=x-j;
+        dist=dist+max(pos,prevPos)-min(pos,prevPos);
+        prevPos=pos;
+      }
+  }
+  cout<<dist;
+}

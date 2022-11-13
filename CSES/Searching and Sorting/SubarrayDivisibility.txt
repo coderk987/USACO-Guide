@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	long int n;
+	cin>>n;
+	long int tot=0;
+	vector<long int> first(n,-1);
+	first[0]=0;
+	long int r=0;
+	for(long int i=1;i<=n;i++) {
+		long int x;
+		cin>>x;
+		r=(r+x)%n;
+		if (first[x]==-1) first[x]=i;
+		else tot++;
+	}
+	cout<<tot<<endl;
+}

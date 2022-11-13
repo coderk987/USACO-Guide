@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  freopen("cownomics.in","r",stdin);
+  freopen("cownomics.out","w",stdout);
+  
+  int n,m;
+  cin>>n>>m;
+  vector<string> yes(m,"");
+  vector<string> no(m,"");
+  for(int i=0;i<n;i++){
+      string s;
+      cin>>s;
+      for(int i=0;i<m;i++){
+          yes[i]+=s[i];
+      }
+  }for(int i=0;i<n;i++){
+      string s;
+      cin>>s;
+      for(int i=0;i<m;i++){
+          no[i]+=s[i];
+      }
+  }
+  int t=0;
+  bool flag=true;
+  for(int i=0;i<m;i++){
+      string cur=yes[i];
+      for(int j=0;j<cur.length();j++){
+          if(*find(no[i].begin(),no[i].end(),cur[j])){
+              flag=false;
+              break;
+          }
+      }
+      if(flag) t++;
+      else flag=true;
+  }
+  cout<<t;
+}

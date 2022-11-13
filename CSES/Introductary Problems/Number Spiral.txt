@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+typedef unsigned long int uli;
+int main() {
+    //problem:https://cses.fi/problemset/task/1071/
+  uli t;
+  cin>>t;
+  uli x,y;
+  while(t--){
+      cin>>y>>x;
+      uli z=max(y,x);
+      uli ap=z*(z-1)+1;
+      uli ans;
+      if(z%2==0){
+          ans=ap+y-x;
+      }else{
+          ans=ap+x-y;
+      }
+      cout<<ans<<endl;
+  }
+}

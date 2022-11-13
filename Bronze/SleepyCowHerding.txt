@@ -1,0 +1,16 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  freopen("herding.in","r",stdin);
+  freopen("herding.out","w",stdout);
+  int a[3];
+  cin>>a[0]>>a[1]>>a[2];
+  sort(a,a+3);
+  int maxh=max((a[1]-a[0]),(a[2]-a[1]))-1;
+  if(a[2]-a[0]==2) cout<<0<<endl<<maxh;
+  else if(a[2]-a[1]==2) cout<<1<<endl<<maxh;
+  else cout<<2<<endl<<maxh;
+}

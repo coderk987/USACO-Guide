@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long int ll;
+#define INF_INT 2e9
+#define INF_LL 2e18
+#define mod 1000000007
+#define pb push_back
+#define vi vector<int>
+#define vi2d vector<vector<int>>
+#define vl vector<ll>
+#define fastio ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(x) x.begin(), x.end()
+#define ins insert
+#define lb(x,y) (lower_bound(all(x),y)-x.begin())
+#define ub upper_bound
+#define umap unordered_map
+#define uset unordered_set
+#define vpi vector<pair<int,int>>
+ 
+#define sz(q) (int)(q.size())
+#define fo(a,b) for(auto i=a;i<b;++i)
+#define rfo(a,b) for(auto i=a;i>=b;--i)
+#define fo2(a,b) for(auto j=a;j<b;++j)
+#define rfo2(a,b) for(auto j=a;j>=b;--j)
+#define tt ll t; cin>>t; while(t--)
+ 
+#define maxel(a) *max_element(all(a))
+#define minel(a) *min_element(all(a))
+//#define find(a,b) a.find(b) != a.end()
+
+int main() {
+    int n;
+    cin>>n;
+    unsigned long long int whole=n*(n+1)/2;
+    if(whole%2==1){
+        cout<<"NO";
+        return 0;
+    }
+    cout<<"YES"<<endl;
+    vi s1;
+    vi s2;
+    if(n%2==0){
+        int l=1,r=n;
+        int ctr=1;
+        while(l<r){
+            if(ctr%2==1){
+                s1.pb(l);
+                s1.pb(r);
+            }else{
+                s2.pb(l);
+                s2.pb(r);
+            }
+            ctr++;
+            l++;
+            r--;
+        }
+    }else{
+        s1.pb(n);
+        int l=1,r=n-1;
+        int ctr=1;
+        while(l<r){
+            if(ctr%2==1){
+                s2.pb(l);
+                s2.pb(r);
+            }else{
+                s1.pb(l);
+                s1.pb(r);
+            }
+            ctr++;
+            l++;
+            r--;
+        }
+    }
+    cout<<s1.size()<<endl;
+    for(auto a:s1) cout<<a<<" ";
+    cout<<endl<<s2.size()<<endl;
+    for(auto a:s2) cout<<a<<" ";
+}

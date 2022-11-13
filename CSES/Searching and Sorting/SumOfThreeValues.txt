@@ -1,0 +1,35 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct ele{long long i,v;};
+bool cmp(ele a,ele b){
+    return a.v<b.v;
+}
+int main() {
+    int n;
+    long long x;
+    cin>>n>>x;
+    ele a[n];
+    for(int i=0;i<n;i++){ 
+        cin>>a[i].v;
+        a[i].i=i+1;
+    }
+    sort(a,a+n,cmp);
+    for(int i=0;i<n;i++){
+        long long val=x-a[i].v;
+        int p1=0,p2=n-1;
+        while(p2>p1){
+            int cur=a[p2].v+a[p1].v;
+            if(p1==i || cur<val) p1++;
+            else if(p2==i || cur>val) p2--;
+            else if(cur==val){
+                cout<<a[i].i<<" "<<a[p1].i<<" "<<a[p2].i;
+                return 0;
+            }
+        }
+    }
+    cout<<"IMPOSSIBLE";
+    return 0;
+}

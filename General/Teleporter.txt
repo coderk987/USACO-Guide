@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+  freopen("teleport.in","r",stdin);
+  freopen("teleport.out","w",stdout);
+  int a,b,c,d;
+  cin>>a>>b>>c>>d;
+  int s1=abs(min(a,b)-min(c,d));
+  int s2=abs(max(a,b)-max(c,d));
+  if(abs(b-a)<s1+s2) cout<<abs(b-a);
+  else cout<<s1+s2;
+}

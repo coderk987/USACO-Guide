@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+int arr[100][100];
+
+bool beats(int i,int j,int sesions, int cows){
+    for(int a=0;a<sesions;a++){
+        if(find(arr[a],arr[a]+cows,i)<=find(arr[a],arr[a]+cows,j)) return false;
+    }
+    return true;
+}
+
+int main() {
+    freopen("gymnastics.in","r",stdin);
+    freopen("gymnastics.out","w",stdout);
+    int sesions,cows;
+    cin>>sesions>>cows;
+    for(int i=0;i<sesions;i++){
+        for(int j=0;j<cows;j++){
+            cin>>arr[i][j];
+        }
+    }
+    int total=0;
+    for(int i=0;i<cows;i++){
+        for(int j=0;j<cows;j++){
+            if(beats(i+1,j+1,sesions,cows)){
+                total++;
+            }
+        }
+    }
+    cout<<total;
+}

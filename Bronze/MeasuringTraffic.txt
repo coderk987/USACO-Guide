@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  freopen("traffic.in","r",stdin);
+  freopen("traffic.out","w",stdout);
+  int n;
+  cin>>n;
+  int block[26];
+  int on1=0,on2=0,of1=0,of2=0;
+  int small=10000,large=0;
+  for(int i=0;i<n;i++){
+      string type;
+      int t1,t2;
+      cin>>type>>t1>>t2;;
+      if(type=="on"){
+          on1+=t1;
+          on2+=t2;
+      }else if(type=="off"){
+          of1+=t1;
+          of2+=t2;
+      }else if(type=="none"){
+          small=min(small,t2);
+          large=max(large,t1);
+      }
+  }
+  cout<<large-on1<<" "<<small-on2<<endl;
+  cout<<large-of2<<" "<<small-of1<<endl;
+}

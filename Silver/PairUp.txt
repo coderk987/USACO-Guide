@@ -1,0 +1,42 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct unit{
+    long long x,y;
+};
+
+bool cmp(unit a,unit b){
+    return a.y<b.y;
+}
+
+int main() {
+    freopen("pairup.in","r",stdin);
+    freopen("pairup.out","w",stdout);
+    int n;
+    cin>>n;
+    unit cows[n];
+    for(int i=0;i<n;i++) cin>>cows[i].x>>cows[i].y;
+    sort(cows,cows+n,cmp);
+    int l=0,r=n-1;
+    int best=0;
+    while(l<r){
+        int tot=cows[l].y+cows[r].y;
+        if(cows[l].x>cows[r].x){
+            cows[l].x-=cows[r].x;
+            cows[r].x=0;
+            r--;
+        }else if(cows[r].x>cows[l].x){
+            cows[r].x-=cows[l].x;
+            cows[l].x=0;
+            l++;
+        }else if(cows[r].x==cows[l].x){
+            cows[r].x=cows[l].x=0;
+            r--;
+            l++;
+        }
+        best=max(tot,best);
+    }
+    cout<<best;
+}

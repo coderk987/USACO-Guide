@@ -1,0 +1,47 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+int main() {
+  string yr[12]{"Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig","Rat"};
+  map<string, int> cowI{{"Bessie",0}};
+  map<string,int> cowA{{"Bessie",0}};
+  int n;
+  cin>>n;
+  while(n--){
+      string cmd[8];
+      for(int i=0;i<8;i++){
+          cin>>cmd[i];
+      }
+      if(cmd[3]=="next"){
+          int ctr=0;
+          bool found=true;
+          for(int i=cowI.at(cmd[7]);found;i++){
+              if(i==12) i=0;
+              if(yr[i]==cmd[4] && ctr>0){
+                  cowI.insert({cmd[0],i});
+                  cowA.insert({cmd[0],cowA.at(cmd[7])-ctr});
+                  found=false;
+              }
+              ctr++;
+          }
+      }else{
+          int ctr=0;
+          bool found=true;
+          for(int i=cowI.at(cmd[7]);found;i--){
+              if(i==-1) i=11;
+              if(yr[i]==cmd[4] && ctr>0){
+                  cowI.insert({cmd[0],i});
+                  cowA.insert({cmd[0],cowA.at(cmd[7])+ctr});
+                  found=false;
+              }
+              ctr++;
+          }
+      }
+      if(cmd[0]=="Elsie"){
+          cout<<abs(cowA.at("Elsie"));
+          break;
+      }
+  }
+}

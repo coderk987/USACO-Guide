@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main() {
+  ifstream fin("speeding.in");
+  ofstream fout("speeding.out");
+  int n,m;
+  fin>>n>>m;
+  int limit[100],bessie[100];
+  int start=0;
+  for(int i=0;i<n;i++){
+      int len,speed;
+      fin>>len>>speed;
+      for(int j=start;j<start+len;j++){
+          limit[j]=speed;
+      }
+      start+=len;
+  }
+  start=0;
+  for(int i=0;i<m;i++){
+      int len,speed;
+      fin>>len>>speed;
+      for(int j=start;j<start+len;j++){
+          bessie[j]=speed;
+      }
+      start+=len;
+  }
+  int worst=0;
+  for(int j=0;j<100;j++){
+      worst=max(worst,bessie[j]-limit[j]);
+  }
+  fout<<worst;
+}

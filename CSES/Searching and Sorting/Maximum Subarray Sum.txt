@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+typedef long long signed int uli;
+
+int main() {
+    uli n;
+    cin>>n;
+    uli a[n];
+    for(uli i=0;i<n;i++) cin>>a[i];
+    uli best=-1e9,sum=-1e9;
+    for (uli k = 0; k < n; k++) {
+        sum = max(a[k],sum+a[k]);
+        best = max(best,sum);
+    }
+    cout<<best;
+}

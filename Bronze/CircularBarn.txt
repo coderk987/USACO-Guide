@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  freopen("cbarn.in","r",stdin);
+  freopen("cbarn.out","w",stdout);
+  int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<n;i++) cin>>arr[i];
+  int best=2000000000;
+  for(int i=0;i<n;i++){
+      int cur=0;
+
+      int k;
+      for(k=i;k<n;k++){
+          cur+=arr[k]*(k-i);
+      }
+      for(int j=0;j<i;j++){
+          cur+=arr[j]*(n-i+j);
+      }
+      
+      best=min(cur,best);;
+  }
+  cout<<best;
+}

@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main() {
+  freopen("promote.in","r",stdin);
+  freopen("promote.out","w",stdout);
+  int s[4],e[4],p[3];
+  cin>>s[0]>>e[0];
+  cin>>s[1]>>e[1];
+  cin>>s[2]>>e[2];
+  cin>>s[3]>>e[3];
+  p[2]=e[3]-s[3];
+  p[1]=p[2]+e[2]-s[2];
+  p[0]=p[1]+e[1]-s[1];
+  cout<<p[0]<<endl<<p[1]<<endl<<p[2];
+}

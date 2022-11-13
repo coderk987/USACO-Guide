@@ -1,0 +1,45 @@
+#include <iostream>
+#include <map>
+#include <algorithm>
+#include <vector>
+#include <utility>
+using namespace std;
+
+bool cmp(pair<string, int> a,pair<string, int> b){
+    return a.second < b.second;
+}
+
+int main() {
+    freopen("notlast.in","r",stdin);
+    freopen("notlast.out", "w", stdout);
+	int n;
+	cin>>n;
+	map<string,int> hash;
+	for(int i=0;i<n;i++){
+		string s;int x;
+		cin>>s>>x;
+		hash[s]+=x;
+	}
+    vector<pair<string,int>> vec;
+    for(auto j:hash){
+        vec.push_back({j.first,j.second});
+    }
+    sort(vec.begin(),vec.end(),cmp);
+	for(int i=0;i<n;i++){
+		if(vec[n-1].second==vec[0].second){
+            if(n>1) cout<<"Tie";
+            else cout<<vec[0].first;
+            break;
+        }
+        if(vec[i].second>vec[0].second){
+            if(vec[i+1].second==vec[i].second){
+                cout<<"Tie";
+                break;
+            }
+            else{
+                cout<<vec[i].first;
+                break;
+            }
+        }
+	}
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  string s;
+  cin>>s;
+  int t=1;
+  vector<string> perms;
+  string prev=s;
+  perms.push_back(s);
+  while(prev_permutation(prev.begin(),prev.end())){
+      t++;
+      perms.push_back(prev);
+  }
+  while(next_permutation(s.begin(),s.end())){
+      t++;
+      perms.push_back(s);
+  }
+  cout<<perms.size()<<endl;
+  sort(perms.begin(),perms.end());
+  for(int i=0;i<perms.size();i++){
+      cout<<perms[i]<<endl;
+  } 
+}

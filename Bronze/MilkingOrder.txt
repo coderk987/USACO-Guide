@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int has(int a[],int x,int n){
+    for(int i=0;i<n;i++){
+        if(a[i]==x) return i;
+    }
+    return -1;
+}
+
+int main() {
+    freopen("milkorder.in", "r",stdin);
+    freopen("milkorder.out","w",stdout);
+    int n,m,k;
+    cin>>n>>m>>k;
+    int social[m];
+    vector<int> order(n,0);
+    bool there=false;
+    for(int i=0;i<m;i++) cin>>social[i];
+    for(int i=0;i<k;i++){
+        int x,pos;
+        cin>>x>>pos;
+        order[pos-1]=x;
+        int ind=has(social,x,m);
+        if(ind>-1){
+            for(int j=0;j<m;j++){
+                if(j<ind){
+                    order[(pos-1)-(ind-j)]=social[j];
+                    if(social[j]==1&&!there){
+                        there=true;
+                        cout<<(pos-1)-(ind-j)+2;
+                        break;
+                    }
+                }
+                else if(j>ind){
+                    order[(pos-1)+(j-ind)-1]=social[j];
+                    if(social[j]==1&&!there){
+                        there=true;
+                        cout<<(pos-1)+(j-ind)+1;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    if(there==false){
+        for(int i=0;i<n;i++){
+            if(order[i]==0){
+                cout<<i+1;
+                break;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+int main() {
+  freopen("word.in","r",stdin);
+  freopen("word.out","w",stdout);
+  vector<string> essay;
+  int n,k;
+  cin>>n>>k;
+  for(int i=0;i<n;i++){
+      string s;
+      cin>>s;
+      essay.push_back(s);
+  }
+  int lc=0;
+  for(int i=0;i<n;i++){
+      string s=essay[i];
+      if(s.length()+lc>k){
+          lc=0;
+          lc+=s.length();
+          if(essay[i+1].length()+lc>k || i==n-1) cout<<endl<<s;
+          else cout<<endl<<s<<" ";
+      }
+      else{
+        lc+=s.length();
+        if(essay[i+1].length()+lc>k || i==n-1) cout<<s;
+        else cout<<s<<" ";
+      }
+  }
+  
+}

@@ -1,0 +1,15 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    freopen("paint.in", "r", stdin);
+    freopen("paint.out", "w", stdout);
+    int a,b,c,d;
+    cin>>a>>b;
+    cin>>c>>d;
+    int total=(b-a)+(d-c);
+    int overlap=max(min(b,d)-max(a,c),0);
+    int ans=total-overlap;
+    cout<<ans;
+}

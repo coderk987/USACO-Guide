@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+  //Problem: https://cses.fi/problemset/task/1069
+  string dna;
+  cin>>dna;
+  int r=1,mr=0;
+  for(unsigned long int i=0;i<dna.length();i++){
+      if(dna[i]==dna[i-1] && i!=0) r++;
+      else r=1;
+      if(r>mr) mr=r;
+  }
+  cout<<mr;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct cow{int s,e;};
+
+bool cmp(cow a,cow b){return (a.s<b.s);}
+
+int main() {
+    freopen("lifeguards.in","r",stdin);
+    freopen("lifeguards.out","w",stdout);
+    int n;
+    cin>>n;
+    cow arr[n];
+    for(int i=0;i<n;i++) cin>>arr[i].s>>arr[i].e;
+    sort(arr,arr+n,cmp);
+    int best=0;
+    for(int i=0;i<n;i++){
+        int cur=0,shift=0;
+        for(int j=0;j<n;j++){
+            if(j!=i){
+                if(arr[j].s<cur){
+                    if(arr[j].e>cur){ 
+                        shift+=arr[j].e-cur;
+                        cur=arr[j].e;
+                    }
+                }else{
+                    shift+=arr[j].e-arr[j].s;
+                    cur=arr[j].e;
+                }
+            }
+            best=max(shift,best);
+        }
+    }
+    cout<<best;
+}

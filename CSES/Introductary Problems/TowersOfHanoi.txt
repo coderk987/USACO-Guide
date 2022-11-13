@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+int pow(int a, int b){
+    if(b==0) return 1;
+    if(b==1) return a;
+    int res=pow(a, b/2);
+    if(b%2==0) return res*res;
+    else return res*res*a;
+}
+
+void step(int s,int e){
+    cout<<s<<" "<<e<<endl;
+}
+
+void hanoi(int n,int s,int e){
+    if(n==1){
+        step(s,e);
+        return;
+    }
+    else{
+        int o=6-(s+e);
+        hanoi(n-1,s,o);
+        step(s,e);
+        hanoi(n-1,o,e);
+    }
+}
+
+int main() {
+  int n;
+  cin>>n;
+  cout<<pow(2,n)-1<<endl;
+  hanoi(n,1,3);
+}

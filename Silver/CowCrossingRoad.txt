@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int main() {
+  freopen("maxcross.in","r",stdin);
+  freopen("maxcross.out","w",stdout);
+  //Input
+  int n,k,b;
+  cin>>n>>k>>b;
+  vector<int> v(n,0);
+  for(int i=0;i<b;i++){
+      int x;
+      cin>>x;
+      v[x-1]=1;
+  }
+  //Hashing
+  vector<int> hsh(n,0);
+  hsh[0]=v[0];
+  for(int i=1;i<n;i++) hsh[i]=hsh[i-1]+v[i];
+  //Algorithm
+  int ans=INT_MAX;
+  for(int i=k;i<n;i++){
+      ans=min(ans,hsh[i]-hsh[i-k]);
+  }
+  cout<<ans;
+} 

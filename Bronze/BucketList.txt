@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct cow{
+    int s,t,b;
+};
+
+bool cmp(cow& a,cow& b){
+    return a.s>b.s;
+}
+
+int main() {
+    freopen("blist.in","r",stdin);
+    freopen("blist.out","w",stdout);
+    vector<cow> cows;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cow c;
+        cin>>c.s>>c.t>>c.b;
+        cows.push_back(c);
+    }
+    int maxB=0;
+    for(int i=1;i<=1000;i++){
+        int bucket=0;
+        for(int j=0;j<n;j++){
+            if(cows[j].s<=i && i<=cows[j].t){
+                bucket+=cows[j].b;
+            }
+        }
+        maxB=max(maxB,bucket);
+    }
+    cout<<maxB;
+}

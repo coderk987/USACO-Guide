@@ -1,0 +1,22 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int n;
+	long long int w;
+	cin>>n>>w;
+	long long int arr[n];
+
+	for(int i=0;i<n;i++) cin>>arr[i];
+	sort(arr,arr+n);
+	long long int cur=0, t=1;
+	for(int i=0;i<n;i++){
+		if(cur+arr[i]>w){ 
+			cur=arr[i];
+			t++;
+		}else cur+=arr[i];
+	}
+	cout<<t;
+}
